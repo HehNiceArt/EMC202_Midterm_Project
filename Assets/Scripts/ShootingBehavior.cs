@@ -7,12 +7,14 @@ public class ShootingBehavior : MonoBehaviour
     [SerializeField]
     private GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
-    public GameObject bullet;
+    private GameObject bullet;
     public float bulletSpeed;
     public float fireRate;
     private bool canShoot = false;
     public float timeToLive = 5f;
 
+    public Transform enemy;
+    public float rangeValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +28,23 @@ public class ShootingBehavior : MonoBehaviour
         {
             StartCoroutine(FireShot());
         }
+
         Destroy(bullet, timeToLive);
+        float dist = Vector3.Distance(transform.position, enemy.transform.position);
+        if (dist <= rangeValue)
+        
+            Debug.Log("Aaa");
+            LookRotation();
+        
     }
+    void LookRotation()
+    {
+        Vector3 relativePos = enemy.position - transform.position;
+        // the second argument, upwards, defaults to Vector3.up
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = rotation;
+    }
+
     IEnumerator FireShot()
     {
         canShoot = true;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 780314091835574520}
   m_Layer: 0
   m_Name: EnemyBehavior
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d88bc0cfe83c1947813213bf424eaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
-  minSpawnTime: 2
-  maxSpawnTime: 5
+  enemyPrefab: {fileID: 147573656737997563, guid: 0dfa9a63500d6bc49b301b64ab318a84,
+    type: 3}
+  playerPos: {fileID: 0}
+  player: {fileID: 0}
+  enemySpawnRate: 1
+  timeToLive: 5
+  moveSpeed: 2
