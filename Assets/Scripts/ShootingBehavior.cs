@@ -1,6 +1,5 @@
 // Ignore Spelling: Behaviour
 
-using System.Collections;
 using UnityEngine;
 
 public class ShootingBehavior : MonoBehaviour
@@ -13,6 +12,7 @@ public class ShootingBehavior : MonoBehaviour
     private GameObject bullet;
     public float bulletSpeed;
     public float fireRate;
+
     //private bool canShoot = false;
     public float timeToLive = 5f;
 
@@ -33,11 +33,10 @@ public class ShootingBehavior : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         //if (Input.GetMouseButtonDown(0) && !canShoot) {
         //    Debug.Log("a");
-            
+
         // StartCoroutine(FireShot()); }
 
         Destroy(bullet, timeToLive);

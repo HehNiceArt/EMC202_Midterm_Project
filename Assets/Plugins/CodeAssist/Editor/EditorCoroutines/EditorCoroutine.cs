@@ -19,21 +19,22 @@ namespace Meryel.UnityCodeAssist.Editor.EditorCoroutines
     {
         private struct YieldProcessor
         {
-            enum DataType : byte
+            private enum DataType : byte
             {
                 None = 0,
                 WaitForSeconds = 1,
                 EditorCoroutine = 2,
                 AsyncOP = 3,
             }
-            struct ProcessorData
+
+            private struct ProcessorData
             {
                 public DataType type;
                 public double targetTime;
                 public object current;
             }
 
-            ProcessorData data;
+            private ProcessorData data;
 
             public void Set(object yield)
             {
@@ -44,16 +45,16 @@ namespace Meryel.UnityCodeAssist.Editor.EditorCoroutines
                 var dataType = DataType.None;
                 double targetTime = -1;
 
-                if(type == typeof(EditorWaitForSeconds))
+                if (type == typeof(EditorWaitForSeconds))
                 {
                     targetTime = EditorApplication.timeSinceStartup + (yield as EditorWaitForSeconds).WaitTime;
                     dataType = DataType.WaitForSeconds;
                 }
-                else if(type == typeof(EditorCoroutine))
+                else if (type == typeof(EditorCoroutine))
                 {
                     dataType = DataType.EditorCoroutine;
                 }
-                else if(type == typeof(AsyncOperation) || type.IsSubclassOf(typeof(AsyncOperation)))
+                else if (type == typeof(AsyncOperation) || type.IsSubclassOf(typeof(AsyncOperation)))
                 {
                     dataType = DataType.AsyncOP;
                 }
@@ -80,10 +81,10 @@ namespace Meryel.UnityCodeAssist.Editor.EditorCoroutines
         }
 
         internal WeakReference m_Owner;
-        IEnumerator m_Routine;
-        YieldProcessor m_Processor;
+        private IEnumerator m_Routine;
+        private YieldProcessor m_Processor;
 
-        bool m_IsDone;
+        private bool m_IsDone;
 
         internal EditorCoroutine(IEnumerator routine)
         {
@@ -115,11 +116,12 @@ namespace Meryel.UnityCodeAssist.Editor.EditorCoroutines
                 EditorApplication.update -= MoveNext;
         }
 
-        static readonly Stack<IEnumerator> kIEnumeratorProcessingStack = new Stack<IEnumerator>(32);
+        private static readonly Stack<IEnumerator> kIEnumeratorProcessingStack = new Stack<IEnumerator>(32);
+
         private bool ProcessIEnumeratorRecursive(IEnumerator enumerator)
         {
             var root = enumerator;
-            while(enumerator.Current as IEnumerator != null)
+            while (enumerator.Current as IEnumerator != null)
             {
                 kIEnumeratorProcessingStack.Push(enumerator);
                 enumerator = enumerator.Current as IEnumerator;

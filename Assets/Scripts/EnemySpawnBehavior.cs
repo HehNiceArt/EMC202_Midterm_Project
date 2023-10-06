@@ -1,22 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawnBehavior : MonoBehaviour
 {
     public GameObject enemy;
     public Transform[] enemyPositions;
-    int spawnPoint;
+    private int spawnPoint;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         StartCoroutine(EnemySpawn());
     }
 
     // Update is called once per frame
-    IEnumerator EnemySpawn()
+    private IEnumerator EnemySpawn()
     {
-        while(true)
+        while (true)
         {
             var pos = enemyPositions[spawnPoint];
             Instantiate(enemy, pos.position, Quaternion.identity);

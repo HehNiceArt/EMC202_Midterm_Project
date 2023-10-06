@@ -1,39 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     public Rigidbody rb;
-    MeshRenderer rend;
-    MeshRenderer render;
+    private MeshRenderer rend;
+    private MeshRenderer render;
 
-    ColorBehavior colorBehavior;
+    //ColorBehavior colorBehavior;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        colorBehavior = GetComponent<ColorBehavior>();
+        //colorBehavior = GetComponent<ColorBehavior>();
         rb = GetComponent<Rigidbody>();
-        //var myColor = ColorBehavior.Instance.bullet.sharedMaterial.color;
-        //var otherColor = ColorBehavior.Instance.RandomColor();
-        //rend.material.color = myColor;
-        //render.material.color = otherColor;
-    }
+        rend = GetComponent<MeshRenderer>();
+        rend = ColorBehavior.Instance.GetComponent<MeshRenderer>(); ;
+        var myColor = ColorBehavior.Instance.ChangeBulletColor();
 
-    private void Update()
-    {
-        
+        rend.sharedMaterial.color = myColor;
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    var myColor = ColorBehavior.Instance.colors;
-    //    var otherColor = EnemyBehavior.rend.material.color;
-    //    if (collision.gameObject.tag == "Enemy")
-    //    {
-    //        Destroy(collision.gameObject);
-    //        Destroy(this.gameObject);
-    //    }
-    //}
 
     //private void OnCollisionEnter(Collision collision)
     //{
@@ -41,12 +25,9 @@ public class Bullet : MonoBehaviour
     //    //var enemyColor = EnemyBehavior.Instance.rend.material.color;
     //    //if (collision.gameObject.tag == "Enemy")
     //    //{
-
     //    //    print("a");
     //    //        Destroy(collision.gameObject);
     //    //        Destroy(this.gameObject);
-
-
 
     //    //}
     //}
@@ -66,5 +47,4 @@ public class Bullet : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-
 }

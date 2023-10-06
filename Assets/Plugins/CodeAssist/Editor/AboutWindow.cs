@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using UnityEditor;
-
+using UnityEngine;
 
 #nullable enable
-
 
 namespace Meryel.UnityCodeAssist.Editor
 {
     public class AboutWindow : EditorWindow
     {
-        GUIStyle? styleLabel;
+        private GUIStyle? styleLabel;
 
         public static void Display()
         {
@@ -58,8 +53,6 @@ namespace Meryel.UnityCodeAssist.Editor
             {
                 Application.OpenURL("https://unitycodeassist.netlify.app/thirdpartynotices");
             }
-
         }
     }
-
 }

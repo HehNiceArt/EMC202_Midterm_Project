@@ -1,12 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using UnityEditor;
-
+using UnityEngine;
 
 #nullable enable
-
 
 namespace Meryel.UnityCodeAssist.Editor
 {
@@ -21,14 +18,13 @@ namespace Meryel.UnityCodeAssist.Editor
 #endif
 
         [MenuItem("Tools/" + Title + "/Status", false, 1)]
-        static void DisplayStatusWindow()
+        private static void DisplayStatusWindow()
         {
             StatusWindow.Display();
         }
 
-
         [MenuItem("Tools/" + Title + "/Synchronize", false, 2)]
-        static void Sync()
+        private static void Sync()
         {
             EditorCoroutines.EditorCoroutineUtility.StartCoroutine(SyncAux(), NetMQInitializer.Publisher);
 
@@ -38,22 +34,22 @@ namespace Meryel.UnityCodeAssist.Editor
             NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "Synchronize_MenuItem");
         }
 
-
         [MenuItem("Tools/" + Title + "/Report error", false, 51)]
-        static void DisplayFeedbackWindow()
+        private static void DisplayFeedbackWindow()
         {
             FeedbackWindow.Display();
         }
 
         [MenuItem("Tools/" + Title + "/About", false, 52)]
-        static void DisplayAboutWindow()
+        private static void DisplayAboutWindow()
         {
             AboutWindow.Display();
         }
 
 #if MERYEL_UCA_LITE_VERSION
+
         [MenuItem("Tools/" + Title + "/Compare versions", false, 31)]
-        static void CompareVersions()
+        private static void CompareVersions()
         {
             Application.OpenURL("http://unitycodeassist.netlify.app/compare");
 
@@ -61,16 +57,16 @@ namespace Meryel.UnityCodeAssist.Editor
         }
 
         [MenuItem("Tools/" + Title + "/Get full version", false, 32)]
-        static void GetFullVersion()
+        private static void GetFullVersion()
         {
             Application.OpenURL("http://u3d.as/2N2H");
 
             NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "FullVersion_MenuItem");
         }
+
 #endif // MERYEL_UCA_LITE_VERSION
 
-
-        static IEnumerator SyncAux()
+        private static IEnumerator SyncAux()
         {
             var clientCount = NetMQInitializer.Publisher?.clients.Count ?? 0;
             NetMQInitializer.Publisher?.SendConnect();
@@ -97,7 +93,7 @@ namespace Meryel.UnityCodeAssist.Editor
             var filePath = CommonTools.GetInputManagerFilePath();
             var hash = Input.UnityInputManager.GetMD5Hash(filePath);
             var convertedPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"UCA_IM_{hash}.txt");
-            
+
             var b = new Input.Binary2TextExec();
             b.Exec(filePath, convertedPath, detailed: false, largeBinaryHashOnly: false, hexFloat: false);
         }
@@ -107,7 +103,6 @@ namespace Meryel.UnityCodeAssist.Editor
         {
             Input.InputManagerMonitor.Instance.Bump();
         }
-
 
         [MenuItem("Code Assist/Layer Check")]
         static void UpdateLayers()
@@ -152,14 +147,11 @@ namespace Meryel.UnityCodeAssist.Editor
             }
 
             NetMQInitializer.Publisher?.SendTags(UnityEditorInternal.InternalEditorUtility.tags);
-
         }
 
         [MenuItem("Code Assist/GO Check")]
-
         static void TestGO()
         {
-
             var go = GameObject.Find("Deneme");
             //var go = MonoBehaviour.FindObjectOfType<Deneme>().gameObject;
 
@@ -188,11 +180,9 @@ namespace Meryel.UnityCodeAssist.Editor
             }
         }
 
-
         [MenuItem("Code Assist/Undo List Test")]
         static void Undo2Test()
         {
-
             //List<string> undoList, out int undoCursor
             var undoList = new List<string>();
             int undoCursor = int.MaxValue;
@@ -206,20 +196,16 @@ namespace Meryel.UnityCodeAssist.Editor
                 new System.Type[] { typeof(List<string>), typeof(int).MakeByRefType() },
                 null);
 
-
             dynMethod.Invoke(null, new object[] { undoList, undoCursor });
 
             Serilog.Log.Debug("undo count: {Count}", undoList.Count);
-
         }
 
         [MenuItem("Code Assist/Reload Domain")]
         static void ReloadDomain()
         {
             EditorUtility.RequestScriptReload();
-
         }
-
 
         /*
         [MenuItem("Code Assist/TEST")]
@@ -232,14 +218,10 @@ namespace Meryel.UnityCodeAssist.Editor
             }
 
             ScriptFinder.DENEMEEEE();
-
-
-
         }
         */
 
 #endif // MERYEL_DEBUG
-
 
         public static void SendTagsAndLayers()
         {
@@ -258,6 +240,5 @@ namespace Meryel.UnityCodeAssist.Editor
             var sortingValues = sls.Select(sl => sl.value.ToString()).ToArray();
             NetMQInitializer.Publisher?.SendSortingLayers(sortingNames, sortingIds, sortingValues);
         }
-
     }
 }
