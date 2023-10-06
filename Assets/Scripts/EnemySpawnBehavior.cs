@@ -21,7 +21,7 @@ public class EnemySpawnBehavior : MonoBehaviour
             var pos = enemyPositions[spawnPoint];
             Instantiate(enemy, pos.position, Quaternion.identity);
             spawnPoint = (spawnPoint + 1) % enemyPositions.Length;
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 }

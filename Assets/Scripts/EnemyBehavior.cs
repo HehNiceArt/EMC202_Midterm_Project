@@ -26,7 +26,7 @@ public class EnemyBehavior : MonoBehaviour
         transform.LookAt(target);
 
         rend.material.color = ColorBehavior.Instance.RandomColor();
-        print(rend.material.color);
+        //print(rend.material.color);
     }
 
     private void FixedUpdate()
@@ -57,10 +57,10 @@ public class EnemyBehavior : MonoBehaviour
         //        Destroy(collision.gameObject);
         //    }
         //}
-        if(collision.gameObject.tag == "Bullet")
-        {
-            Destroy(collision.gameObject);
-        }
+        //if(collision.gameObject.tag == "Bullet")
+        //{
+        //    Destroy(collision.gameObject);
+        //}
     }
 
 

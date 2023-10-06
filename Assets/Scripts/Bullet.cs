@@ -20,7 +20,10 @@ public class Bullet : MonoBehaviour
         //render.material.color = otherColor;
     }
 
-
+    private void Update()
+    {
+        
+    }
     //private void OnCollisionEnter(Collision collision)
     //{
     //    var myColor = ColorBehavior.Instance.colors;
@@ -32,28 +35,36 @@ public class Bullet : MonoBehaviour
     //    }
     //}
 
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    //var bulletColor = colorBehavior.bullet.sharedMaterial.color;
+    //    //var enemyColor = EnemyBehavior.Instance.rend.material.color;
+    //    //if (collision.gameObject.tag == "Enemy")
+    //    //{
+
+    //    //    print("a");
+    //    //        Destroy(collision.gameObject);
+    //    //        Destroy(this.gameObject);
+
+
+
+    //    //}
+    //}
     private void OnCollisionEnter(Collision collision)
     {
-        var bulletColor = colorBehavior.bullet.sharedMaterial.color;
-        var enemyColor = EnemyBehavior.Instance.rend.material.color;
+        //var bulletColor = GetComponent<Renderer>().material.color;
+        //ColorBehavior.Instance.bullet.sharedMaterial.color;
+        //var enemyColor = EnemyBehavior.Instance.rend.material.color;
         if (collision.gameObject.tag == "Enemy")
         {
-            if(bulletColor.Equals(enemyColor))
-                Destroy(collision.gameObject);
-                Destroy(this.gameObject);
-            
-            
-            
+            //if (bulletColor.Equals(enemyColor))
+            //{
+            //    print("a");
+            //}
+
+            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
         }
     }
-    //private void OnTriggerEnter(Collider collision)
-    //{
-    //    if(collision.CompareTag("Enemy") && (ColorBehavior.Instance.bullet.sharedMaterial.color.Equals(EnemyBehavior.Instance.rend.material.color) ))
-    //    {
-    //        print("a");
-    //        Destroy(this.gameObject);
-    //        Destroy(collision.gameObject);
-    //    }
-    //}
 
 }

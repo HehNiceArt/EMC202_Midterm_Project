@@ -13,7 +13,7 @@ public class ShootingBehavior : MonoBehaviour
     private GameObject bullet;
     public float bulletSpeed;
     public float fireRate;
-    private bool canShoot = false;
+    //private bool canShoot = false;
     public float timeToLive = 5f;
 
     [Header("---Enemy---")]
@@ -27,13 +27,18 @@ public class ShootingBehavior : MonoBehaviour
     {
         rangeValue = PlayerBehaviour.rangeValue;
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+        InvokeRepeating("Fire", 1f, fireRate);
     }
 
     // Update is called once per frame
     private void Update()
     {
+        
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
-        if (Input.GetMouseButtonDown(0) && !canShoot) { StartCoroutine(FireShot()); }
+        //if (Input.GetMouseButtonDown(0) && !canShoot) {
+        //    Debug.Log("a");
+            
+        // StartCoroutine(FireShot()); }
 
         Destroy(bullet, timeToLive);
         float dist = Vector3.Distance(transform.position, enemy.transform.position);
@@ -51,30 +56,30 @@ public class ShootingBehavior : MonoBehaviour
         transform.rotation = rotation;
     }
 
-    private IEnumerator FireShot()
-    {
-        canShoot = true;
-        Fire();
-        yield return new WaitForSeconds(fireRate);
-        canShoot = false;
-    }
+    //private IEnumerator FireShot()
+    //{
+    //    canShoot = true;
+    //    Fire();
+    //    yield return new WaitForSeconds(fireRate);
+    //    canShoot = false;
+    //}
 
     private void Fire()
     {
         //bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Player.transform.rotation);
         bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1000f);
+        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 10f);
         //Rigidbody rb = bullet.GetComponent<Rigidbody>();
         //rb.AddForce(transform.forward * bulletSpeed);
         //rb.velocity = transform.TransformDirection(new Vector3(bulletSpeed, 0, bulletSpeed));
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("a");
-            Destroy(this.gameObject);
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Enemy")
+    //    {
+    //        Debug.Log("a");
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }
