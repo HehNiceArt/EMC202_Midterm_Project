@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 984651391}
   m_Layer: 6
   m_Name: ShootingPoint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -662,7 +662,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 46875d0c3c987cb47bedf57663e22e6c, type: 2}
+  - {fileID: 2100000, guid: bbcfc556add855c4290f1fbc6ec93776, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -934,8 +934,11 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 0}
   - {r: 0, g: 0, b: 1, a: 0}
   parent: {fileID: 1552552856}
-  child: {fileID: 1144213240}
   bullet: {fileID: 6648936819886026985, guid: 4deb5c11b46ce124aaf8a1fac35155ee, type: 3}
+  bulletGameObject: {fileID: 7919057496558881130, guid: 4deb5c11b46ce124aaf8a1fac35155ee,
+    type: 3}
+  bulletRend: {fileID: 6648936819886026985, guid: 4deb5c11b46ce124aaf8a1fac35155ee,
+    type: 3}
   index: 0
 --- !u!1 &1651421104
 GameObject:
