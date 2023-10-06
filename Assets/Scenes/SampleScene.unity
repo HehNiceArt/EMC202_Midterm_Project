@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &329376043
 Transform:
   m_ObjectHideFlags: 0
@@ -438,11 +438,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00650037ccf81a5409837db28bbfd410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeValue: 10
+  rangeValue: 13
   player: {fileID: 1552552854}
   rigidBody: {fileID: 1552552859}
   enemy: {fileID: 96169288778122359, guid: cf5f18b689093c04384b66597ad1fef0, type: 3}
-  moveSpeed: 1000
+  moveSpeed: 1
 --- !u!4 &550220914
 Transform:
   m_ObjectHideFlags: 0
@@ -547,9 +547,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 984651391}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootingPoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -563,7 +563,7 @@ Transform:
   m_GameObject: {fileID: 984651390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -584,7 +584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1052639290
 Transform:
   m_ObjectHideFlags: 0
@@ -612,9 +612,9 @@ GameObject:
   - component: {fileID: 1144213241}
   - component: {fileID: 1144213240}
   - component: {fileID: 1144213239}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -636,7 +636,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -776,7 +776,8 @@ GameObject:
   - component: {fileID: 1552552855}
   - component: {fileID: 1552552859}
   - component: {fileID: 1552552860}
-  m_Layer: 0
+  - component: {fileID: 1552552861}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -798,7 +799,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -913,10 +914,29 @@ MonoBehaviour:
     type: 3}
   bulletSpawnPoint: {fileID: 984651391}
   bulletSpeed: 0
-  fireRate: 1
+  fireRate: 0.5
   timeToLive: 5
-  enemy: {fileID: 96169288778122359, guid: cf5f18b689093c04384b66597ad1fef0, type: 3}
-  rangeValue: 10
+  PlayerBehaviour: {fileID: 550220913}
+--- !u!114 &1552552861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552552854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8051ea80abcc8a447bff4e151fc3cb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 1, b: 0, a: 0}
+  - {r: 0, g: 0, b: 1, a: 0}
+  parent: {fileID: 1552552856}
+  child: {fileID: 1144213240}
+  bullet: {fileID: 6648936819886026985, guid: 4deb5c11b46ce124aaf8a1fac35155ee, type: 3}
+  index: 0
 --- !u!1 &1651421104
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1651421105
 Transform:
   m_ObjectHideFlags: 0
@@ -1049,8 +1069,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3692555, y: 3.3692555, z: 3.3692555}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
